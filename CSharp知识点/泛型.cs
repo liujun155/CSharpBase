@@ -43,4 +43,12 @@ namespace CSharp知识点
             Test2(this);
         }
     }
+
+    public class MethodClass<T>
+    {
+        public void DoMethod(T t)
+        {
+            Console.WriteLine(t.ToString());
+        }
+    }
 }

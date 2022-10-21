@@ -34,6 +34,13 @@ namespace CSharp知识点
             else if (i > 0 && i <= 2) return 1;
             else return Foo(i - 1) + Foo(i - 2);
         }
+        public static IEnumerable<int> Foo2(int num)
+        {
+            for (int i = 1; i <= num; i++)
+            {
+                yield return Foo(i);
+            }
+        }
 
         /*计算字符串中每个字符个数*/
         public static void CountChar(string str)
