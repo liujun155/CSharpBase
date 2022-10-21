@@ -53,6 +53,10 @@ namespace CSharp知识点
             //methodClass.DoMethod(str);
             #endregion
 
+            #region ----------反射----------
+            Reflection.ReflectionMethod();
+            #endregion
+
             Console.ReadLine();
         }
     }
