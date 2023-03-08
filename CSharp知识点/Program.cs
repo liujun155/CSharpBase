@@ -109,6 +109,9 @@ namespace CSharp知识点
             Console.WriteLine("HttpWebRequest方式：");
             var res = HttpWebRequestClass.Get<string>(@"https://api.uomg.com/api/comments.163?format=text");
             Console.WriteLine(res);
+            Console.WriteLine("HttpClient方式：");
+            var res1 = HttpClientClass.Instance.Get<string>(@"https://api.uomg.com/api/comments.163?format=text");
+            Console.WriteLine(res1);
             #endregion
 
             Console.ReadLine();
