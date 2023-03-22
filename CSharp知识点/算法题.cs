@@ -26,6 +26,16 @@ namespace CSharp知识点
             }
         }
 
+        #region 排序获取索引列表
+        public static List<int> GetSortIndex(int[] arr)
+        {
+            return arr.Select((num, index) => new { num, index })
+                .OrderBy(item => item.num)
+                .Select(item => item.index)
+                .ToList();
+        }
+        #endregion
+
         /*一列数的规则如下 : 1 、 1 、 2 、 3 、 5 、 8 、 13 、 21 、 34… 求第 30 位数是多少，用递归算法实现*/
         public static int Foo(int i)
         {

@@ -44,13 +44,15 @@ namespace CSharp知识点
         }
 
         // 定义同步Get请求方法，返回值为泛型T
-        public T Get<T>(string url) where T : class
+        public T? Get<T>(string url) where T : class
         {
             HttpResponseMessage response = _httpClient.GetAsync(url).Result;
             if (response.IsSuccessStatusCode)
             {
                 // 获取响应结果并返回
                 var jsonStr = response.Content.ReadAsStringAsync().Result;
+                if (typeof(T).Equals(typeof(string)))
+                    return (T)Convert.ChangeType(jsonStr, typeof(T));
                 return JsonConvert.DeserializeObject<T>(jsonStr);
             }
             else
@@ -61,13 +63,15 @@ namespace CSharp知识点
         }
 
         // 定义异步Get请求方法，返回值为泛型T
-        public async Task<T> GetAsync<T>(string url) where T : class
+        public async Task<T?> GetAsync<T>(string url) where T : class
         {
             HttpResponseMessage response = await _httpClient.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
                 // 获取响应结果并返回
                 var jsonStr = await response.Content.ReadAsStringAsync();
+                if (typeof(T).Equals(typeof(string)))
+                    return (T)Convert.ChangeType(jsonStr, typeof(T));
                 return JsonConvert.DeserializeObject<T>(jsonStr);
             }
             else
@@ -78,7 +82,7 @@ namespace CSharp知识点
         }
 
         // 定义同步Post请求方法，返回值为泛型T
-        public T Post<T>(string url, IDictionary<string, string> data) where T : class
+        public T? Post<T>(string url, IDictionary<string, string> data) where T : class
         {
             HttpContent content = new FormUrlEncodedContent(data);
             HttpResponseMessage response = _httpClient.PostAsync(url, content).Result;
@@ -86,6 +90,8 @@ namespace CSharp知识点
             {
                 // 获取响应结果并返回
                 var jsonStr = response.Content.ReadAsStringAsync().Result;
+                if (typeof(T).Equals(typeof(string)))
+                    return (T)Convert.ChangeType(jsonStr, typeof(T));
                 return JsonConvert.DeserializeObject<T>(jsonStr);
             }
             else
@@ -96,7 +102,7 @@ namespace CSharp知识点
         }
 
         // 定义异步Post请求
-        public async Task<T> PostAsync<T>(string url, IDictionary<string, string> data) where T : class
+        public async Task<T?> PostAsync<T>(string url, IDictionary<string, string> data) where T : class
         {
             HttpContent content = new FormUrlEncodedContent(data);
             HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -104,6 +110,8 @@ namespace CSharp知识点
             {
                 // 获取响应结果并返回
                 var jsonStr = await response.Content.ReadAsStringAsync();
+                if (typeof(T).Equals(typeof(string)))
+                    return (T)Convert.ChangeType(jsonStr, typeof(T));
                 return JsonConvert.DeserializeObject<T>(jsonStr);
             }
             else

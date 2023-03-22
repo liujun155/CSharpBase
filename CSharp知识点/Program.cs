@@ -28,6 +28,11 @@ namespace CSharp知识点
             int[] nums = { 5, 7, 1, 11, 9, 4, 3, 2, 10, 19, 15 };
             CalculateClass.BubbleSort(nums);
 
+            Console.WriteLine("获取排序后的索引：");
+            int[] numArr = new int[] { 3, 2, 7, 9, 4, 10, 6, 11, 1 };
+            List<int> idxLst = CalculateClass.GetSortIndex(numArr);
+            Console.WriteLine(string.Join(",", idxLst));
+
             Console.WriteLine("计算字符串中字符个数：");
             CalculateClass.CountChar("aaaabbbbcdefffffffffffAAAAAAA");
 
